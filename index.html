@@ -20,8 +20,8 @@
 <script>
     function initialize() {
 
-        var myLatlng = new google.maps.LatLng(43.647256, -79.403577); //Toronto
-
+        var myLatlng = new google.maps.LatLng(43.647256, -79.403577); //Marker with bounce
+        var latlngTwo = new google.maps.LatLng(43.518829, -84.782610); //Marker with window
 
         var mapOptions = { //Map options
             zoom: 2,
@@ -34,9 +34,16 @@
             position: myLatlng,
             map: map,
             animation: google.maps.Animation.DROP,
-            title: 'Hello World!, Vancouver'
+            title: 'Hello World!, Bounce'
         });
 
+        var twoMarker = new google.maps.Marker({
+            position: latlngTwo,
+            map: map,
+            title: 'Hello World!, Window'
+        });
+
+        //Bounce Animation
         google.maps.event.addListener(myMarker, 'click', toggleBounce);
 
         function toggleBounce() {
@@ -47,6 +54,17 @@
                 myMarker.setAnimation(google.maps.Animation.BOUNCE);
             }
         }
+
+        //Information window
+        var contentString = 'Hello Window';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+        google.maps.event.addListener(twoMarker, 'click', function() {
+            infowindow.open(map,twoMarker);
+        });
 
     }
 
