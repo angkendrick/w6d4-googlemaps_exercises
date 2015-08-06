@@ -56,10 +56,15 @@
         }
 
         //Information window
-        var contentString = 'Hello Window';
+        var contentString = '<div style="background-color: darkgray"><h1>Hello Window</h1><br>This is an info window</div>';
 
         var infowindow = new google.maps.InfoWindow({
-            content: contentString
+            content: contentString,
+            boxStyle: {
+                background: "blue",
+                opacity: 0.75,
+                width: "280px"
+            }
         });
 
         google.maps.event.addListener(twoMarker, 'click', function() {
