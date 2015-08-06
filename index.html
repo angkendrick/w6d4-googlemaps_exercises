@@ -1,27 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style type="text/css">
-        html, body, #map-canvas { height: 100%; margin: 0; padding: 0;}
-    </style>
-    <script type="text/javascript"
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmQvIwvDWDBZ22v_VXo4pYFGPU5DcP8b4">
-    </script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+        html, body, #map-canvas {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 </head>
 <body>
 <div id="map-canvas"></div>
 
-<script type="text/javascript">
+<script>
     function initialize() {
-        var mapOptions = {
-            center: { lat: -34.397, lng: 150.644},
-            zoom: 8
-        };
-        var map = new google.maps.Map(document.getElementById('map-canvas'),
-                mapOptions);
+
+        var myLatlng = new google.maps.LatLng(43.647256, -79.403577); //Toronto
+        var vanLatlng = new google.maps.LatLng(49.278552, -123.122540); //Vancouver
+        var theirLatlng = new google.maps.LatLng(-25.363882,131.044922); //Australia
+
+        var mapOptions = { //Map options
+            zoom: 4,
+            center: vanLatlng
+        }
+
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); //generate the map
+
+        var myMarker = new google.maps.Marker({
+            position: vanLatlng,
+            map: map,
+            title: 'Hello World!, Vancouver'
+        });
+
+        var theirmarker = new google.maps.Marker({ //Marker
+            position: theirLatlng,
+            map: map,
+            title: 'Hello World!, Australia'
+        });
     }
+
     google.maps.event.addDomListener(window, 'load', initialize);
+
 </script>
 
 </body>
